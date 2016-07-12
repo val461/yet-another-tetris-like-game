@@ -1,0 +1,14 @@
+# Change Log:
+# All notable changes to this project will be documented in this file.
+# This project adheres to [Semantic Versioning](http://semver.org/).
+
+0.1.0 (2016-07-12)
+    added:
+        - 3 project description files: Change Log, Read Me, License.
+        - ability to pause.
+        - game box has colored edges.
+        - ambidextrous keyboard layout.
+        - speed changes with score.
+
+    changed:
+        - score system is cleaner.
