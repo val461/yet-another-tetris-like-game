@@ -15,7 +15,6 @@ function Tetrominoes:newInstanceOfModel(index, grid)
         --~ randomColor()
     )
     new:randomRotation()
-    --~ new:forceTranslation(grid.startingPosition - new.squares[centerIndex].position)
     new:forceTranslation(grid.startingPosition - new:highestPosition())
     return new
 end
@@ -30,36 +29,36 @@ end
 
 -- I
 local squares = { Square() }
-add(squares, directions.down)
-add(squares, directions.down)
-add(squares, directions.down)
+add(squares, directions.right)
+add(squares, directions.right)
+add(squares, directions.right)
 table.insert(Tetrominoes.models, { squares = squares, color = colors.purple })
 
 -- O
 squares = { Square() }
-add(squares, directions.down)
 add(squares, directions.right)
-add(squares, directions.up)
+add(squares, directions.down)
+add(squares, directions.left)
 table.insert(Tetrominoes.models, { squares = squares, color = colors.white, canRotate = false })
 
 -- T
 squares = { Square() }
 add(squares, directions.right)
-add(squares, directions.up)
-add(squares, directions.down + directions.right)
+add(squares, directions.down)
+add(squares, directions.up + directions.right)
 table.insert(Tetrominoes.models, { squares = squares, color = colors.blue })
 
 -- J
 squares = { Square() }
-add(squares, directions.left)
-add(squares, directions.down)
+add(squares, directions.right)
+add(squares, directions.right)
 add(squares, directions.down)
 table.insert(Tetrominoes.models, { squares = squares, color = colors.red })
 
 -- L
 squares = { Square() }
-add(squares, directions.right)
-add(squares, directions.down)
+add(squares, directions.left)
+add(squares, directions.left)
 add(squares, directions.down)
 table.insert(Tetrominoes.models, { squares = squares, color = colors.green })
 

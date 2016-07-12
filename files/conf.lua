@@ -1,8 +1,8 @@
 function love.conf(t)
     t.version = "0.10.1"
     t.window.title = "tetris-clone"
-    t.window.width = 480
-    t.window.height = 800
+    t.window.width = 487
+    t.window.height = 487
 
     t.modules.audio = false
     t.modules.joystick = false

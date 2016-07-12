@@ -1,15 +1,3 @@
---[[
-self = Tetrominoes; index = 1
-pt(copy(self.models[index].squares))
-new = Tetromino(
-    copy(self.models[index].squares),
-    self.models[index].canRotate,
-    grid,
-    self.models[index].color
-    --~ randomColor()
-)
-]]
-
 Tables = {}
 
 function copy(a)    -- deep copy for values but shallow copy for keys and metatables
@@ -22,6 +10,20 @@ function copy(a)    -- deep copy for values but shallow copy for keys and metata
     else
         return a
     end
+end
+
+function Tables.emptyArray(width, height)
+    local result = {}
+    if height and 1 <= height then
+        for i = 1, width do
+            table.insert(result, Tables.emptyArray(height))
+        end
+    else
+        for i = 1, width do
+            table.insert(result, false)    -- set default value to false because nil cannot be stored in lua arrays
+        end
+    end
+    return result
 end
 
 function pa(t, printKeys)  -- print an array shallowly

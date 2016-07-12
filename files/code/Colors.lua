@@ -2,7 +2,6 @@ require("code.Tables")
 
 colors =
     {
-        black  = {  0,   0,   0},
         gray   = {100, 100, 100},
         green  = {  0, 255,   0},
         blue   = {  0, 127, 255},
@@ -13,7 +12,8 @@ colors =
         white  = {255, 255, 255}
     }
 
-unnamedColors = Tables.values(colors)
+local unnamedColors = Tables.values(colors)-- no black on black, for the sake of visibility
+colors.black = {0, 0, 0}
 
 function randomColor()
     return unnamedColors[math.random(#unnamedColors)]

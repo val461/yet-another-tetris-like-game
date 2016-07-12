@@ -99,41 +99,12 @@ function Tetromino:forceTranslation(vector)
     self:forEachSquare(translateSquare)
 end
 
---[[ DEPRECATED
-local function notAnInteger(x)
-    return x ~= math.floor(x)
-end
-
-function Tetromino:align()
-    if(notAnInteger(self.squares[0].position.x)) then
-        self:translate(directions.left / 2)
-    end
-end
-]]
-
-local function getSquareOrdinate(sq)
-    return sq.position.y
-end
-
 -- private
 function Tetromino:highestPosition()
     local function compare(new, acc)
         return new.position.y < acc.position.y
     end
     return Tables.extremum(self.squares, compare).position
-end
-
--- private
-function Tetromino:highest()
-    return Tables.min((self:map(getSquareOrdinate)))
-end
-
-function Tetromino:enforceRoof()
-    local highestOrdinate = self:highest()
-    --~ print("Tetromino:121: "..highestOrdinate) --DEBUGGING
-    if highestOrdinate < 1 then
-        self:forceTranslation((1 - highestOrdinate) * directions.down)
-    end
 end
 
 -- private
@@ -155,24 +126,6 @@ end
 function Tetromino:randomRotation()
     self:forceRotation(math.random(0, 3))
 end
-
--- [[ DEBUGGING
-local function isInteger(coord)
-    return coord == math.floor(coord)
-end
-
-local function hasIntegerCoords(sq)
-    return sq.position:allCoordinates(isInteger) 
-end
-
-function Tetromino:hasIntegerCoords()
-    assert(self:allSquares(hasIntegerCoords))
-end
-
-function Tetromino:__tostring()
-    return pa(self.squares)
-end
---]]
 
 function Tetromino:rotate(frozenSquares)
     if self.canRotate then

@@ -21,7 +21,6 @@ local fromCornerToCenter = (directions.right + directions.down) / 2
 local fromCenterToCorner = -fromCornerToCenter
 
 function Square:getCenter()
-    --~ print("Square:24:getCenter(): ", self.position, fromCornerToCenter) --DEBUGGING
     return self.position + fromCornerToCenter
 end
 
@@ -46,9 +45,3 @@ function Square:draw(grid)
     local location = self:realPosition(grid)
     love.graphics.rectangle("fill", location.x + Square.halfGap, location.y + Square.halfGap, Square.visibleLength, Square.visibleLength)
 end
-
--- [[ DEBUGGING
-function Square:__tostring()
-    return "{ position = " .. tostring(self.position) .. " }"
-end
---]]

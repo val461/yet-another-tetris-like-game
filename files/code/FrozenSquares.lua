@@ -9,24 +9,13 @@ FrozenSquares.__index = FrozenSquares
 local topRowIndex = 1
 
 function FrozenSquares.new(nRows, nCols, grid)
-    local row = {}
-
-    for j = 1, nCols do
-        table.insert(row, false)    -- set default value to false because nil cannot be stored in lua arrays
-    end
-
     local t = 
         {
-            nRows = (nRows or 12),
-            nCols = (nCols or 20),
-            grid = grid,
-            squares = { row }
+            nRows = (nRows or 20),
+            nCols = (nCols or 14),
+            grid = grid
         }
-
-    for i = 2, nRows do
-        table.insert(t.squares, copy(row))
-    end
-
+    t.squares = Tables.emptyArray(t.nRows, t.nCols)
     return setmetatable(t, FrozenSquares)
 end
 

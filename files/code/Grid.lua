@@ -9,7 +9,7 @@ Grid.__index = Grid
 function Grid.new(position, nRows, nCols, bgColor, edgeColor, innerMargin)
     local t = {}
     t.innerMargin = innerMargin or 12
-    t.outerPosition = position or Vector()
+    t.outerPosition = position or Vector(55, 50)
     t.position = t.outerPosition + Vector(t.innerMargin, t.innerMargin)
     t.frozenSquares = FrozenSquares(nRows, nCols, t)
     t.height = t.frozenSquares.nRows * Square.length + Square.halfGap
