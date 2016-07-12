@@ -8,7 +8,7 @@ require("code.Strings")
 --~ require("code.FrozenSquares")
 
 --[[ TODO
-    4D-tetris (fork)
+    4D-tetris (fork from current)
 ]]
 
 local function newTetromino()
