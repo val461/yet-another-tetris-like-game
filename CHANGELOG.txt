@@ -9,7 +9,9 @@ Unreleased (2016-07-13)
         - game box has colored edges.
         - ambidextrous and numpad support for the keyboard.
         - speed changes with score.
-        - more timers (there are now five timers) for a better experience when pressing several keys at once or individually.
+        - score changes with time.
+        - best score of the current game is kept.
+        - more timers for a better experience when pressing several keys at once or individually.
 
     changed:
         - score system is cleaner.
@@ -20,7 +22,7 @@ Unreleased (2016-07-13)
         - configuration parameters were moved to love.load().
 
     fixed:
-        - the system of random colors sometimes produced squares of the same color as the background and thus not visible.
+        - color randomization sometimes produced squares of the same color as the background and thus not visible.
 
     removed:
         - Strings module, because so little is now printed (with the cleaner score system) that it became unused.

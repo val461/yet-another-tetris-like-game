@@ -4,8 +4,8 @@ require("code.Colors")
 require("code.Tetrominoes")
 
 --[[ TODO’s
-    score as mere reciprocal of canFallTimerDuration
-    score decreases constantly (even when negative)
+    best score
+    timer object
     print time elapsed from the beginning of the game
     high scores
         shown at pause or when game is over
@@ -13,16 +13,48 @@ require("code.Tetrominoes")
     4D-tetris (fork from current)
 ]]
 
+resetBestScoreAtTheEnd = false
+randomizedColors = true
+
+canMoveDownTimerDuration = 0.1
+canMoveTimerDuration = 0.11
+canRotateTimerDuration = 0.15
+megafallTimerDuration = 0.3
+scoreDecreasesTimerDuration = 1
+
+scoreDecreasesBy = 4
+
 local function newTetromino()
-    return Tetrominoes:newInstanceOfRandomModel(grid)
+    return Tetrominoes:newInstanceOfRandomModel(grid, randomizedColors)
 end
 
 local function pointsForCompletedRows(n)
     return math.ceil(n * 100 * (1.2^n))
 end
 
-local function updateCanFallTimerDuration()
-    canFallTimerDuration = 0.9^(score / 400)
+local function getCanFallTimerDuration()
+    return 0.9^(score / 60)
+end
+
+local function resetTimers()
+    canFallTimerDuration = getCanFallTimerDuration()
+    canFallTimer = 0
+    canMoveDownTimer = 0
+    canMoveTimer = 0
+    canRotateTimer = 0
+    megafallTimer = 0
+    scoreDecreasesTimer = 0
+end
+
+local function initGame()
+        score = 0
+        if resetBestScoreAtTheEnd or not bestScore then
+            bestScore = 0
+        end
+        paused = false
+        gameover = false
+        resetTimers()
+        currentTetromino = newTetromino()
 end
 
 local function freeze()
@@ -30,7 +62,10 @@ local function freeze()
     local newPoints = pointsForCompletedRows(grid.frozenSquares:removeCompletedRows())
     if newPoints > 0 then
         score = score + newPoints
-        updateCanFallTimerDuration()
+        if score > bestScore then
+            bestScore = score
+        end
+        canFallTimerDuration = getCanFallTimerDuration()
     end
     currentTetromino = newTetromino()
     if currentTetromino:collidesWith(grid.frozenSquares) then
@@ -46,27 +81,12 @@ local function freezeOrFall()
 end
 
 function love.load(args)
-    score = 0
-    paused = false
-    gameover = false
     grid = Grid()
-    currentTetromino = newTetromino()
+    initGame()
 
     messageHeight = 30
     messageLocation = Vector(grid.outerPosition.x + grid.outerWidth + 60, grid.outerPosition.y + 260)
     fontColor = colors.purple
-
-    updateCanFallTimerDuration()
-    canMoveDownTimerDuration = 0.1
-    canMoveTimerDuration = 0.13
-    canRotateTimerDuration = 0.2
-    megafallTimerDuration = 0.3
-
-    canFallTimer = 0
-    canMoveDownTimer = 0
-    canMoveTimer = 0
-    canRotateTimer = 0
-    megafallTimer = 0
 
     love.graphics.setBackgroundColor(colors.green)
 end
@@ -76,11 +96,8 @@ function love.keyreleased(key)
         love.event.quit()
         return
     elseif key == 'r' then
-        score = 0
         grid.frozenSquares:erase()
-        currentTetromino = newTetromino()
-        paused = false
-        gameover = false
+        initGame()
         --~ return
     end
 end
@@ -155,6 +172,14 @@ function love.update(dt)
             end
         end
     end
+
+    if scoreDecreasesTimer < scoreDecreasesTimerDuration then
+        scoreDecreasesTimer = scoreDecreasesTimer + dt
+    else
+        score = score - scoreDecreasesBy
+        scoreDecreasesTimer = 0
+        canFallTimerDuration = getCanFallTimerDuration()
+    end
 end
 
 local function printMessage(message)
@@ -169,9 +194,11 @@ function love.draw()
     end
 
     love.graphics.setColor(fontColor)
+
     messageNumber = 0
 
     printMessage(score)
+    printMessage("best: " .. bestScore)
 
     if gameover then
         printMessage("GAME OVER")

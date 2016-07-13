@@ -6,21 +6,20 @@ math.randomseed(os.time())
 
 Tetrominoes = { models = {} }
 
-function Tetrominoes:newInstanceOfModel(index, grid)
+function Tetrominoes:newInstanceOfModel(index, grid, randomizedColors)
     local new = Tetromino(
         copy(self.models[index].squares),
         self.models[index].canRotate,
         grid,
-        self.models[index].color
-        --~ randomColor()
+        randomizedColors and randomColor() or self.models[index].color
     )
     new:randomRotation()
     new:forceTranslation(grid.startingPosition - new:highestPosition())
     return new
 end
 
-function Tetrominoes:newInstanceOfRandomModel(grid)
-    return self:newInstanceOfModel(math.random(#Tetrominoes.models), grid)
+function Tetrominoes:newInstanceOfRandomModel(grid, randomizedColors)
+    return self:newInstanceOfModel(math.random(#Tetrominoes.models), grid, randomizedColors)
 end
 
 local function add(squares, direction)
