@@ -1,11 +1,13 @@
 # tetris-clone
 A clone of Tetris made with [Lua](http://www.lua.org/) and [LÖVE](https://love2d.org/).
 
-Contents:
+## Contents:
+* [keys](#keys)
 * [installation](#installation)
 * [launch](#launch)
 * [license](#license-free) (free!)
 
+## Keys
 Key|Action
 ---|--------
 **ESC** | exit
