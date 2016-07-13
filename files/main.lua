@@ -72,7 +72,7 @@ function love.keyreleased(key)
     if key == 'escape' then
         love.event.quit()
         return
-    elseif key == 'r' or gameover and key == 'return' then
+    elseif key == 'n' then
         score = 0
         grid.frozenSquares:erase()
         currentTetromino = newTetromino()
