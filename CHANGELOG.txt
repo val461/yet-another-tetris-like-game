@@ -2,13 +2,25 @@
 # All notable changes to this project will be documented in this file.
 # This project adheres to [Semantic Versioning](http://semver.org/).
 
-0.1.0 (2016-07-12)
+Unreleased (2016-07-13)
     added:
         - 3 project description files: Change Log, Read Me, License.
         - ability to pause.
         - game box has colored edges.
         - ambidextrous keyboard layout.
         - speed changes with score.
+        - two more timers (there are now four timers) for a better experience when pressing several keys at once.
 
     changed:
         - score system is cleaner.
+        - saner defaults for grid position.
+        - array initialization in frozenSquares moved to Tables module and made more generic.
+        - the structure of each tetromino was updated so that they can be created without checking if they exceed the frame (except if they are randomly rotated).
+        - window and position of the elements within.
+        - configuration parameters were moved to love.load().
+
+    fixed:
+        - the system of random colors sometimes produced squares of the same color as the background and thus not visible.
+
+    removed:
+        - Strings module, because so little is now printed (with the cleaner score system) that it became unused.

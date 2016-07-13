@@ -39,7 +39,7 @@ local function freezeOrFall()
     end
 end
 
-function love.load(arg)
+function love.load(args)
     score = 0
     paused = false
     gameover = false
