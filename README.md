@@ -13,11 +13,11 @@ A clone of Tetris made with [Lua](http://www.lua.org/) and [LÖVE](https://love2
 You need to have [LÖVE](https://love2d.org/) 0.10.1 installed. This program may or may not work well with other versions of LÖVE.
 
 ## Launch
-Specify the directory `files` or the file with a `.love` extension as an argument to `love`. Here are two examples:
-
-`love tetris-clone/files`
+Depending on your system, it may be enough to just double-click the file with a `.love` extension. Otherwise, you may use the command line, in which case you should specify the file with a `.love` extension (or the directory `files`) as an argument to `love`. Here are two examples:
 
 `love tetris-clone/bin/tetris-clone-0.1.0.love`
+
+`love tetris-clone/files`
 
 ## License (free)
 ![Public domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)
