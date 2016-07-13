@@ -1,14 +1,29 @@
 # tetris-clone
 A clone of Tetris made with [Lua](http://www.lua.org/) and [LÖVE](https://love2d.org/).
 
-Key|Function
+Key|Action
 ---|--------
 **ESC** | exit
 **TAB** | pause
+**R** | restart
 :arrow_left: :arrow_down: :arrow_right: or **A**, **S**, **D** | move
 :arrow_up: or **W** | rotate
-**space** or **return** | fall all the way down
-**N** | start a new game
+**space** or **enter** | fall all the way down
+
+You can also use the numpad:
+
+Key|Action
+---|--------
+**4** | move left
+**6** | move right
+**2** | move down
+**0** | fall all the way down
+**1** | move left and down
+**3** | move right and down
+**8** | rotate
+**7** | move left and rotate
+**9** | move right and rotate
+**5** | move down and rotate
 
 ## Installation
 You need to have [LÖVE](https://love2d.org/) 0.10.1 installed. This program may or may not work well with other versions of LÖVE.
