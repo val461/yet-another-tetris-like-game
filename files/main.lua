@@ -3,7 +3,10 @@ require("code.Vector")
 require("code.Colors")
 require("code.Tetrominoes")
 
---[[ TODO
+--[[ TODO’s
+    score decreases constantly (even when negative)
+    print time elapsed from the beginning of the game
+    score as mere reciprocal of canFallTimerDuration
     4D-tetris (fork from current)
 ]]
 
@@ -51,11 +54,13 @@ function love.load(args)
     fontColor = colors.purple
 
     updateCanFallTimerDuration()
-    canMoveTimerDuration = 0.1
+    canMoveDownTimerDuration = 0.1
+    canMoveTimerDuration = 0.13
     canRotateTimerDuration = 0.2
     megafallTimerDuration = 0.3
 
     canFallTimer = 0
+    canMoveDownTimer = 0
     canMoveTimer = 0
     canRotateTimer = 0
     megafallTimer = 0
@@ -67,16 +72,12 @@ function love.keyreleased(key)
     if key == 'escape' then
         love.event.quit()
         return
-    elseif key == 'n' then
+    elseif key == 'r' or gameover and key == 'return' then
         score = 0
         grid.frozenSquares:erase()
         currentTetromino = newTetromino()
         gameover = false
-        return
-    end
-
-    if gameover or paused then
-        return
+        --~ return
     end
 end
 
@@ -104,29 +105,33 @@ function love.update(dt)
     if canMoveTimer < canMoveTimerDuration then
         canMoveTimer = canMoveTimer + dt
     else
-        if love.keyboard.isDown('down','s') then
-            freezeOrFall()
-            canMoveTimer = 0
-            if gameover then
-                return
-            end
-        end
-
-        if love.keyboard.isDown('left','a') then
+        if love.keyboard.isDown('left','a', 'kp1', 'kp4', 'kp7') then
             currentTetromino:move(directions.left, grid.frozenSquares)
             canMoveTimer = 0
         end
 
-        if love.keyboard.isDown('right','d') then
+        if love.keyboard.isDown('right','d', 'kp3', 'kp6', 'kp9') then
             currentTetromino:move(directions.right, grid.frozenSquares)
             canMoveTimer = 0
+        end
+    end
+
+    if canMoveDownTimer < canMoveDownTimerDuration then
+        canMoveDownTimer = canMoveDownTimer + dt
+    else
+        if love.keyboard.isDown('down','s', 'kp1', 'kp2', 'kp3', 'kp5') then
+            freezeOrFall()
+            canMoveDownTimer = 0
+            if gameover then
+                return
+            end
         end
     end
 
     if canRotateTimer < canRotateTimerDuration then
         canRotateTimer = canRotateTimer + dt
     else
-        if love.keyboard.isDown('up','w') then
+        if love.keyboard.isDown('up','w', 'kp5', 'kp7', 'kp8', 'kp9') then
             currentTetromino:rotate(grid.frozenSquares)
             canRotateTimer = 0
         end
@@ -135,7 +140,7 @@ function love.update(dt)
     if megafallTimer < megafallTimerDuration then
         megafallTimer = megafallTimer + dt
     else
-        if love.keyboard.isDown('space') then   -- fall all the way down
+        if love.keyboard.isDown('space', 'return', 'kp0') then   -- fall all the way down
             while currentTetromino:canMove(directions.down, grid.frozenSquares) do
                 currentTetromino:forceTranslation(directions.down)
             end

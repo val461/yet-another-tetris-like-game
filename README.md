@@ -5,7 +5,7 @@ A clone of Tetris made with [Lua](http://www.lua.org/) and [LÖVE](https://love2
 * ESC to exit
 * TAB to pause
 * left, right and down arrows or A, S and D to move
-* up or W to rotate
+* up arrow or W to rotate
 * space to fall all the way down at once
 * N to restart
 
