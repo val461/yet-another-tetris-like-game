@@ -22,6 +22,6 @@ Depending on your system, it may be enough to just double-click the file with a 
 
 `love tetris-clone/files`
 
-## License (free)
+## License (free!)
 ![Public domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)
 The license is [CC0](http://creativecommons.org/publicdomain/zero/1.0/), which means you can do what you want without my permission and without mentioning me as author of this code. Feel free to copy and build better things from them!
