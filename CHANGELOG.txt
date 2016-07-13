@@ -9,7 +9,7 @@ Unreleased (2016-07-13)
         - game box has colored edges.
         - ambidextrous and numpad support for the keyboard.
         - speed changes with score.
-        - score changes with time.
+        - score decreases with time.
         - best score of the current game is kept.
         - more timers for a better experience when pressing several keys at once or individually.
 
@@ -19,7 +19,6 @@ Unreleased (2016-07-13)
         - array initialization in frozenSquares moved to Tables module and made more generic.
         - the structure of each tetromino was updated so that they can be created without checking if they exceed the frame (except if they are randomly rotated).
         - window and position of the elements within.
-        - configuration parameters were moved to love.load().
 
     fixed:
         - color randomization sometimes produced squares of the same color as the background and thus not visible.
