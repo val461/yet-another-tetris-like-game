@@ -7,7 +7,7 @@ Unreleased (2016-07-13)
         - 3 project description files: Change Log, Read Me, License.
         - ability to pause.
         - game box has colored edges.
-        - ambidextrous and numpad keyboard support.
+        - ambidextrous and numpad support for the keyboard.
         - speed changes with score.
         - more timers (there are now five timers) for a better experience when pressing several keys at once or individually.
 
