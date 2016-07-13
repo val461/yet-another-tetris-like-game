@@ -4,9 +4,12 @@ require("code.Colors")
 require("code.Tetrominoes")
 
 --[[ TODO’s
+    score as mere reciprocal of canFallTimerDuration
     score decreases constantly (even when negative)
     print time elapsed from the beginning of the game
-    score as mere reciprocal of canFallTimerDuration
+    high scores
+        shown at pause or when game is over
+        possibility to reset
     4D-tetris (fork from current)
 ]]
 
