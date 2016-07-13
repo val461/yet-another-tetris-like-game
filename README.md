@@ -4,13 +4,13 @@ A clone of Tetris made with [Lua](http://www.lua.org/) and [LÖVE](https://love2
 ## Keys
 * **ESC** to exit
 * **TAB** to pause
-* **left**, **right** and **down arrows** or **A**, **S** and **D** to move
-* **up arrow** or **W** to rotate
+* **left**, **right** and **down** arrows or **A**, **S** and **D** to move
+* **up** arrow or **W** to rotate
 * **space** to fall all the way down at once
 * **N** to start a new game
 
 ## Installation
-You need to have [LÖVE](https://love2d.org/) 0.10.1 installed. This program may or may not work as well with other versions of LÖVE.
+You need to have [LÖVE](https://love2d.org/) 0.10.1 installed. This program may or may not work well with other versions of LÖVE.
 
 ## Launch
 Specify the directory `files` or the file with a `.love` extension as an argument to `love`. Here are two examples:
