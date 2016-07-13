@@ -44,4 +44,4 @@ Depending on your system, it may be enough to just double-click the file with a 
 
 ## License (free!)
 ![Public domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)
-The license is [CC0](http://creativecommons.org/publicdomain/zero/1.0/), which means you can do what you want without my permission and without mentioning me as author of this code. Feel free to copy and build better things from them!
+The license is [CC0](http://creativecommons.org/publicdomain/zero/1.0/), which means you can and should do what you want with the code without my permission and without mentioning me as its author. Feel free to copy and build better things from it!
