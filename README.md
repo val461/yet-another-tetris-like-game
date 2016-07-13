@@ -1,11 +1,11 @@
 # tetris-clone
 A clone of Tetris made with [Lua](http://www.lua.org/) and [LÖVE](https://love2d.org/).
 
-## Contents:
-* [keys](#keys)
-* [installation](#installation)
-* [launch](#launch)
-* [license](#license-free) (free!)
+## Contents
+* [Keys](#keys)
+* [Installation](#installation)
+* [Launch](#launch)
+* [License](#license-free) (free!)
 
 ## Keys
 Key|Action
@@ -36,7 +36,7 @@ Key|Action
 You need to have [LÖVE](https://love2d.org/) 0.10.1 installed. This program may or may not work well with other versions of LÖVE.
 
 ## Launch
-Depending on your system, it may be enough to just double-click the file with a `.love` extension. Otherwise, you may use the command line, in which case you should specify the file with a `.love` extension (or the directory `files`) as an argument to `love`. Here are two examples:
+Depending on your system, it may be enough to just double-click the file with a `.love` extension. Otherwise, you may use the command line as in the following two examples (replace the path by the appropriate one if necessary):
 
 `love tetris-clone/bin/tetris-clone-0.1.0.love`
 
