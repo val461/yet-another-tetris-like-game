@@ -5,6 +5,7 @@ require("code.Tetrominoes")
 
 --[[ TODO’s
     timer object
+    score lower bound to zero; adapt getCanFallTimerDuration() in consequence
     print time elapsed from the beginning of the game
     high scores
         shown at pause or when game is over
@@ -15,15 +16,18 @@ require("code.Tetrominoes")
 resetBestScoreAtTheEnd = true
 randomizedColors = true
 
-canMoveDownTimerDuration = 0.08
-canMoveTimerDuration = 0.1
-canRotateTimerDuration = 0.15
-megafallTimerDuration = 0.3
-scoreDecreasesTimerDuration = 1
-
 canFallTimerDurationLowerBound = 0.2
-
 scoreDecreasesBy = 4
+
+timers =
+    {
+        canMoveDown = { duration = 0.1 },
+        canMove = { duration = 0.11 },
+        canRotate = { duration = 0.15 },
+        megafall = { duration = 0.3 },
+        scoreDecreases = { duration = 1 },
+        canFall = {}    -- this one is initialized at runtime
+    }
 
 local function newTetromino()
     return Tetrominoes:newInstanceOfRandomModel(grid, randomizedColors)
@@ -43,13 +47,10 @@ local function getCanFallTimerDuration()
 end
 
 local function resetTimers()
-    canFallTimerDuration = getCanFallTimerDuration()
-    canFallTimer = 0
-    canMoveDownTimer = 0
-    canMoveTimer = 0
-    canRotateTimer = 0
-    megafallTimer = 0
-    scoreDecreasesTimer = 0
+    for _, v in pairs(timers) do
+        v.value = 0
+    end
+    timers.canFall.duration = getCanFallTimerDuration()
 end
 
 local function initGame()
@@ -71,7 +72,7 @@ local function freeze()
         if score > bestScore then
             bestScore = score
         end
-        canFallTimerDuration = getCanFallTimerDuration()
+        timers.canFall.duration = getCanFallTimerDuration()
     end
     currentTetromino = newTetromino()
     if currentTetromino:collidesWith(grid.frozenSquares) then
@@ -119,72 +120,72 @@ function love.update(dt)
         return
     end
 
-    if canFallTimer < canFallTimerDuration then
-        canFallTimer = canFallTimer + dt
+    if timers.canFall.value < timers.canFall.duration then
+        timers.canFall.value = timers.canFall.value + dt
     else
         freezeOrFall()
-        canFallTimer = 0
+        timers.canFall.value = 0
         if gameover then
             return
         end
     end
 
-    if canMoveTimer < canMoveTimerDuration then
-        canMoveTimer = canMoveTimer + dt
+    if timers.canMove.value < timers.canMove.duration then
+        timers.canMove.value = timers.canMove.value + dt
     else
         if love.keyboard.isDown('left','a', 'kp1', 'kp4', 'kp7') then
             currentTetromino:move(directions.left, grid.frozenSquares)
-            canMoveTimer = 0
+            timers.canMove.value = 0
         end
 
         if love.keyboard.isDown('right','d', 'kp3', 'kp6', 'kp9') then
             currentTetromino:move(directions.right, grid.frozenSquares)
-            canMoveTimer = 0
+            timers.canMove.value = 0
         end
     end
 
-    if canMoveDownTimer < canMoveDownTimerDuration then
-        canMoveDownTimer = canMoveDownTimer + dt
+    if timers.canMoveDown.value < timers.canMoveDown.duration then
+        timers.canMoveDown.value = timers.canMoveDown.value + dt
     else
         if love.keyboard.isDown('down','s', 'kp1', 'kp2', 'kp3', 'kp5') then
             freezeOrFall()
-            canMoveDownTimer = 0
+            timers.canMoveDown.value = 0
             if gameover then
                 return
             end
         end
     end
 
-    if canRotateTimer < canRotateTimerDuration then
-        canRotateTimer = canRotateTimer + dt
+    if timers.canRotate.value < timers.canRotate.duration then
+        timers.canRotate.value = timers.canRotate.value + dt
     else
         if love.keyboard.isDown('up','w', 'kp5', 'kp7', 'kp8', 'kp9') then
             currentTetromino:rotate(grid.frozenSquares)
-            canRotateTimer = 0
+            timers.canRotate.value = 0
         end
     end
 
-    if megafallTimer < megafallTimerDuration then
-        megafallTimer = megafallTimer + dt
+    if timers.megafall.value < timers.megafall.duration then
+        timers.megafall.value = timers.megafall.value + dt
     else
         if love.keyboard.isDown('space', 'return', 'kp0') then   -- fall all the way down
             while currentTetromino:canMove(directions.down, grid.frozenSquares) do
                 currentTetromino:forceTranslation(directions.down)
             end
             freeze()
-            megafallTimer = 0
+            timers.megafall.value = 0
             if gameover then
                 return
             end
         end
     end
 
-    if scoreDecreasesTimer < scoreDecreasesTimerDuration then
-        scoreDecreasesTimer = scoreDecreasesTimer + dt
+    if timers.scoreDecreases.value < timers.scoreDecreases.duration then
+        timers.scoreDecreases.value = timers.scoreDecreases.value + dt
     else
         score = score - scoreDecreasesBy
-        scoreDecreasesTimer = 0
-        canFallTimerDuration = getCanFallTimerDuration()
+        timers.scoreDecreases.value = 0
+        timers.canFall.duration = getCanFallTimerDuration()
     end
 end
 
