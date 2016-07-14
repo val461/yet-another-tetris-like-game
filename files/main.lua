@@ -36,12 +36,13 @@ local function pointsForCompletedRows(n)
 end
 
 local function getCanFallTimerDuration()
-    local newDuration = 200 / (score + 1)
-    if newDuration < canFallTimerDurationUpperBound then
-        return newDuration
-    else
-        return canFallTimerDurationUpperBound
+    if score > 0 then
+        local newDuration = 200 / score
+        if newDuration < canFallTimerDurationUpperBound then
+            return newDuration
+        end
     end
+    return canFallTimerDurationUpperBound
 end
 
 local function resetTimers()
@@ -180,11 +181,8 @@ function love.update(dt)
 
     if timers.scoreDecreases.value < timers.scoreDecreases.duration then
         timers.scoreDecreases.value = timers.scoreDecreases.value + dt
-    elseif score > 0 then
+    else
         score = score - scoreDecreasesBy
-        if score < 0 then
-            score = 0
-        end
         timers.scoreDecreases.value = 0
         timers.canFall.duration = getCanFallTimerDuration()
     end

@@ -5,6 +5,7 @@
 Unreleased (????-??-??)
     changed:
         - timers were grouped in an array for improved code organization, readability and automatization.
+        - new formula for speed of tetrominoes.
 
 0.1.0 (2016-07-13)
     added:
