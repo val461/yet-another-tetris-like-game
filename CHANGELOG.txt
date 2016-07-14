@@ -2,6 +2,11 @@
 # All notable changes to this project will be documented in this file.
 # This project adheres to [Semantic Versioning](http://semver.org/).
 
+Unreleased (????-??-??)
+    changed:
+        - there is now a higher bound to the speed at which tetrominoes fall.
+        - moves left, right and down are slightly faster.
+
 0.1.0 (2016-07-13)
     added:
         - 3 project description files: Change Log, Read Me, License.

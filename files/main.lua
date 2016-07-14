@@ -4,7 +4,6 @@ require("code.Colors")
 require("code.Tetrominoes")
 
 --[[ TODO’s
-    best score
     timer object
     print time elapsed from the beginning of the game
     high scores
@@ -13,14 +12,16 @@ require("code.Tetrominoes")
     4D-tetris (fork from current)
 ]]
 
-resetBestScoreAtTheEnd = false
+resetBestScoreAtTheEnd = true
 randomizedColors = true
 
-canMoveDownTimerDuration = 0.1
-canMoveTimerDuration = 0.11
+canMoveDownTimerDuration = 0.08
+canMoveTimerDuration = 0.1
 canRotateTimerDuration = 0.15
 megafallTimerDuration = 0.3
 scoreDecreasesTimerDuration = 1
+
+canFallTimerDurationLowerBound = 0.2
 
 scoreDecreasesBy = 4
 
@@ -33,7 +34,12 @@ local function pointsForCompletedRows(n)
 end
 
 local function getCanFallTimerDuration()
-    return 0.9^(score / 60)
+    local newDuration = 0.9^(score / 100)
+    if newDuration > canFallTimerDurationLowerBound then
+        return newDuration
+    else
+        return canFallTimerDurationLowerBound
+    end
 end
 
 local function resetTimers()
