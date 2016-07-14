@@ -4,8 +4,6 @@ require("code.Colors")
 require("code.Tetrominoes")
 
 --[[ TODO’s
-    timer object
-    score lower bound to zero; adapt getCanFallTimerDuration() in consequence
     print time elapsed from the beginning of the game
     high scores
         shown at pause or when game is over
@@ -16,12 +14,12 @@ require("code.Tetrominoes")
 resetBestScoreAtTheEnd = true
 randomizedColors = true
 
-canFallTimerDurationLowerBound = 0.2
+canFallTimerDurationUpperBound = 1.2
 scoreDecreasesBy = 4
 
 timers =
     {
-        canMoveDown = { duration = 0.1 },
+        canMoveDown = { duration = 0.11 },
         canMove = { duration = 0.11 },
         canRotate = { duration = 0.15 },
         megafall = { duration = 0.3 },
@@ -38,11 +36,11 @@ local function pointsForCompletedRows(n)
 end
 
 local function getCanFallTimerDuration()
-    local newDuration = 0.9^(score / 100)
-    if newDuration > canFallTimerDurationLowerBound then
+    local newDuration = 200 / (score + 1)
+    if newDuration < canFallTimerDurationUpperBound then
         return newDuration
     else
-        return canFallTimerDurationLowerBound
+        return canFallTimerDurationUpperBound
     end
 end
 
@@ -92,7 +90,7 @@ function love.load(args)
     initGame()
 
     messageHeight = 30
-    messageLocation = Vector(grid.outerPosition.x + grid.outerWidth + 60, grid.outerPosition.y + 260)
+    messageLocation = Vector(grid.outerPosition.x + grid.outerWidth + 30, grid.outerPosition.y + 260)
     fontColor = colors.purple
 
     love.graphics.setBackgroundColor(colors.green)
@@ -182,8 +180,11 @@ function love.update(dt)
 
     if timers.scoreDecreases.value < timers.scoreDecreases.duration then
         timers.scoreDecreases.value = timers.scoreDecreases.value + dt
-    else
+    elseif score > 0 then
         score = score - scoreDecreasesBy
+        if score < 0 then
+            score = 0
+        end
         timers.scoreDecreases.value = 0
         timers.canFall.duration = getCanFallTimerDuration()
     end
@@ -206,6 +207,7 @@ function love.draw()
 
     printMessage(score)
     printMessage("best: " .. bestScore)
+    --~ printMessage(timers.canFall.duration)  --DEBUGGING
 
     if gameover then
         printMessage("GAME OVER")

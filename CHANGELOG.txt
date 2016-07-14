@@ -4,7 +4,6 @@
 
 Unreleased (????-??-??)
     changed:
-        - there is now a higher bound to the speed at which tetrominoes fall (the game otherwise becomes unplayable past a certain score).
         - timers were grouped in an array for improved code organization, readability and automatization.
 
 0.1.0 (2016-07-13)
