@@ -1,5 +1,5 @@
 # tetris-clone
-A clone of Tetris made with [Lua](http://www.lua.org/) and [LÖVE](https://love2d.org/).
+A Tetris-like game made with [Lua](http://www.lua.org/) and [LÖVE](https://love2d.org/).
 
 ## Contents
 * [Keys](#keys)
