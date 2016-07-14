@@ -1,5 +1,5 @@
 # yet-another-tetris-like-game
-A Tetris-like game made with [Lua](http://www.lua.org/) and [LÖVE](https://love2d.org/).
+A minimalist Tetris-like game made with [Lua](http://www.lua.org/) and [LÖVE](https://love2d.org/).
 
 ## Table of Contents
 * [Keys](#keys)
