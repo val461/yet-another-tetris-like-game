@@ -1,5 +1,5 @@
-# tetris-clone
-A Tetris-like game made with [Lua](http://www.lua.org/) and [LÖVE](https://love2d.org/).
+# yet-another-tetris-like-game
+A minimalist Tetris-like game made with [Lua](http://www.lua.org/) and [LÖVE](https://love2d.org/).
 
 ## Table of Contents
 * [Keys](#keys)
@@ -33,14 +33,14 @@ Key|Action
 **5** | move down and rotate
 
 ## Installation
-You need to have [LÖVE](https://love2d.org/) 0.10.1 installed. This program may or may not work well with other versions of LÖVE.
+You need to have [LÖVE](https://love2d.org/) 0.10.1 installed. This program may or may not work well with other versions of LÖVE. You also have to download [one of the files](https://github.com/Fornost461/yet-another-tetris-like-game/releases) with a `.love` extension, or the source code (LÖVE is able to run it directly, as shown in the next section).
 
 ## Launch
 Depending on your system, it may be enough to just double-click the file with a `.love` extension. Otherwise, you may use the command line as in the following two examples (replace the path by the appropriate one if necessary):
 
-`love tetris-clone/bin/tetris-clone-0.1.0.love`
+`love yet-another-tetris-like-game/bin/yet-another-tetris-like-game-0.2.0.love`
 
-`love tetris-clone/files`
+`love yet-another-tetris-like-game/files`
 
 ## License (free!)
 ![Public domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)
