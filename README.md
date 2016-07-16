@@ -33,7 +33,7 @@ Key|Action
 **5** | move down and rotate
 
 ## Installation
-You need to have [LÖVE](https://love2d.org/) 0.10.1 installed. This program may or may not work well with other versions of LÖVE. You also have to download [one of the files](https://github.com/Fornost461/yet-another-tetris-like-game/releases) with a `.love` extension, or the source code (LÖVE is able to run it directly, as shown in the next section).
+You need to have [LÖVE](https://love2d.org/) 0.10.1 installed. This program may or may not work well with other versions of LÖVE. You also have to download [one of the files](https://github.com/Fornost461/yet-another-tetris-like-game/releases) with a `.love` extension, or the source code (LÖVE is able to run `src` directly, as shown in the next section).
 
 ## Launch
 Depending on your system, it may be enough to just double-click the file with a `.love` extension. Otherwise, you may use the command line as in the following two examples (replace the path by the appropriate one if necessary):
@@ -44,7 +44,7 @@ Depending on your system, it may be enough to just double-click the file with a 
 
 * using the source:
 
-`love yet-another-tetris-like-game-0.2.0/files`
+`love yet-another-tetris-like-game-0.2.0/src`
 
 ## License (free!)
 ![Public domain](http://i.creativecommons.org/p/zero/1.0/88x31.png)
