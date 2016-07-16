@@ -90,9 +90,13 @@ function love.load(args)
     grid = Grid()
     initGame()
 
-    messageHeight = 30
-    messageLocation = Vector(grid.outerPosition.x + grid.outerWidth + 30, grid.outerPosition.y + 260)
     fontColor = colors.purple
+
+    message =
+        {
+            height = 30,
+            location = Vector(grid.outerPosition.x + grid.outerWidth + 30, grid.outerPosition.y + 260)
+        }
 
     love.graphics.setBackgroundColor(colors.green)
 end
@@ -189,7 +193,7 @@ function love.update(dt)
 end
 
 local function printMessage(message)
-    love.graphics.print(message, messageLocation.x, messageLocation.y + messageNumber * messageHeight)
+    love.graphics.print(message, message.location.x, message.location.y + messageNumber * message.height)
     messageNumber = messageNumber + 1
 end
 
