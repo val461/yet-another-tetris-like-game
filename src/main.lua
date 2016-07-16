@@ -15,7 +15,7 @@ resetBestScoreAtTheEnd = true
 randomizedColors = true
 
 canFallTimerDurationUpperBound = 1.2
-scoreDecreasesBy = 4
+scoreDecreasesBy = 6
 
 timers =
     {
@@ -23,8 +23,8 @@ timers =
         canMove = { duration = 0.11 },
         canRotate = { duration = 0.15 },
         megafall = { duration = 0.3 },
-        scoreDecreases = { duration = 1 },
-        canFall = {}    -- this one is initialized at runtime
+        scoreDecreases = {},    -- these two are
+        canFall = {}            -- initialized at runtime
     }
 
 local function newTetromino()
@@ -37,7 +37,7 @@ end
 
 local function getCanFallTimerDuration()
     if score > 0 then
-        local newDuration = 200 / score
+        local newDuration = 400 / score
         if newDuration < canFallTimerDurationUpperBound then
             return newDuration
         end
@@ -183,7 +183,7 @@ function love.update(dt)
         end
     end
 
-    if timers.scoreDecreases.value < timers.scoreDecreases.duration then
+    if timers.scoreDecreases.value < timers.canFall.duration then
         timers.scoreDecreases.value = timers.scoreDecreases.value + dt
     else
         score = score - scoreDecreasesBy
@@ -192,9 +192,9 @@ function love.update(dt)
     end
 end
 
-local function printMessage(message)
-    love.graphics.print(message, message.location.x, message.location.y + messageNumber * message.height)
-    messageNumber = messageNumber + 1
+local function printMessage(text)
+    love.graphics.print(text, message.location.x, message.location.y + message.number * message.height)
+    message.number = message.number + 1
 end
 
 function love.draw()
@@ -205,7 +205,7 @@ function love.draw()
 
     love.graphics.setColor(fontColor)
 
-    messageNumber = 0
+    message.number = 0
 
     printMessage(score)
     printMessage("best: " .. bestScore)
