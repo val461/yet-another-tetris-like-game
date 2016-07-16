@@ -9,12 +9,12 @@
 0.2.1 (2016-07-16)
     changed:
         - timer duration for score decrease is now shared with timer duration for tetromino fall
-        - (code) informations about printing messages were grouped in an array
+        - [code improvement] informations about printing messages were grouped in a table
 
 0.2.0 (2016-07-15)
     changed:
         - new formula for acceleration of tetrominoes
-        - (code) timers were grouped in an array
+        - [code improvement] timers were grouped in a table
 
 0.1.0 (2016-07-13)
     added:
@@ -31,11 +31,11 @@
         - score system is cleaner
         - saner defaults for grid position
         - window size and position of the elements within the window
-        - (code) array initialization in frozenSquares moved to Tables module and made more generic
-        - (code) the structure of each tetromino was updated so that they can be created without checking if they exceed the frame (except if they are randomly rotated)
+        - [code improvement] array initialization in frozenSquares moved to Tables module and made more generic
+        - [code improvement] the structure of each tetromino was updated so that they can be created without checking if they exceed the frame (except if they are randomly rotated)
 
     fixed:
         - color randomization sometimes produced squares of the same color as the background and thus not visible
 
     removed:
-        - (code) Strings module, because so little is now printed (with the cleaner score system) that it became unused
+        - [code improvement] Strings module, because so little is now printed (with the cleaner score system) that it became unused
