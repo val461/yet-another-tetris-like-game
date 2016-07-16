@@ -15,7 +15,7 @@ resetBestScoreAtTheEnd = true
 randomizedColors = true
 
 canFallTimerDurationUpperBound = 1.2
-scoreDecreasesBy = 6
+scoreDecreasesBy = 4
 
 timers =
     {
