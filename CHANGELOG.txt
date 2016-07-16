@@ -4,13 +4,13 @@
 
 0.2.1 (2016-07-16)
     changed:
-        - informations about printing messages were grouped in an array (code improvement).
         - timer duration for score decrease is now shared with that for tetromino fall.
+        - code organization: informations about printing messages were grouped in an array.
 
 0.2.0 (2016-07-15)
     changed:
         - new formula for acceleration of tetrominoes.
-        - timers were grouped in an array (code improvement).
+        - code organization: timers were grouped in an array.
 
 0.1.0 (2016-07-13)
     added:
