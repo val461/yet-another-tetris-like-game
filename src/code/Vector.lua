@@ -41,40 +41,39 @@ function Vector.__tostring(t)
     return "Vector(" .. t.x .. ", " .. t.y .. ")"
 end
 
-function Vector:assimilate(t)
-    self.x = t.x
-    self.y = t.y
+function Vector:translate(t)
+    return self + t
 end
 
-function Vector:translate(t)
-    self:assimilate(self + t)
+function Vector:rotateCounterclockwiseAround(origin, numberOfRotations)
+    return (self - origin):rotateCounterclockwise(numberOfRotations) + origin
 end
 
 function Vector:rotateCounterclockwise(numberOfRotations)
     local n = (numberOfRotations or 1) % 4
     if(n == 0) then
-        return
+        return self
     elseif(n == 1) then
-        self:rotateOnceCounterclockwise()
+        return self:rotateOnceCounterclockwise()
     elseif(n == 2) then
-        self:rotateTwice()
+        return self:rotateTwice()
     elseif(n == 3) then
-        self:rotateOnceClockwise()
+        return self:rotateOnceClockwise()
     else
         error("Vector:rotateCounterclockwise: bad argument: " .. tostring(n), 2)
     end
 end
 
 function Vector:rotateTwice()
-    self:assimilate(Vector(-self.x, -self.y))
+    return Vector(-self.x, -self.y)
 end
 
 function Vector:rotateOnceCounterclockwise()
-    self:assimilate(Vector(-self.y, self.x))
+    return Vector(-self.y, self.x)
 end
 
 function Vector:rotateOnceClockwise()
-    self:assimilate(Vector(self.y, -self.x))
+    return Vector(self.y, -self.x)
 end
 
 directions =

@@ -116,15 +116,13 @@ end
 function Tetromino:forceRotation(n)
     local tetrominoCenter = self:center()
     local function rotateSquare(sq)
-        local posRelativeToTetrominoCenter = sq:getCenter() - tetrominoCenter
-        posRelativeToTetrominoCenter:rotateCounterclockwise(n)
-        sq:setCenter(posRelativeToTetrominoCenter + tetrominoCenter)
+        sq:setCenter(sq:getCenter():rotateCounterclockwiseAround(tetrominoCenter, n))
     end
     self:forEachSquare(rotateSquare)
 end
 
 function Tetromino:randomRotation()
-    self:forceRotation(math.random(0, 3))
+    self:forceRotation(math.random(4))
 end
 
 function Tetromino:rotate(frozenSquares)

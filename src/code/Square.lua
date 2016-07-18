@@ -34,7 +34,7 @@ function Square:isBlocked(direction, frozenSquares)
 end
 
 function Square:forceTranslation(vector)
-    self.position:translate(vector)
+    self.position = vector:translate(self.position)
 end
 
 function Square:realPosition(grid)
